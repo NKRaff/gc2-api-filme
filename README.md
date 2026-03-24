@@ -1,8 +1,6 @@
 # NKRaff-gc2-api-filme
 API desenvolvida como uma atividade de Gestão de Configuração II
 
----
-
 ## Instruções para executar projeto
 
 ### 1. Instalar dependências
@@ -15,8 +13,6 @@ Crie uma cópia do arquivo `.env.example`, renomeie para `.env` e configure a po
 ### 3. Executar o projeto
 No terminal, execute:
 `npm run start`
-
----
 
 ## Workflow utilizado
 
