@@ -8,6 +8,10 @@ const porta = process.env.SERVER_PORTA || 3000
 
 app.use(express.json())
 
+app.get('/api/filmes', (req, res) => {
+  res.status(200).json(filmes)
+})
+
 app.post("/api/filmes", (req, res) => {
   const { titulo, ano, generos } = req.body
   if(titulo, ano, generos) {
