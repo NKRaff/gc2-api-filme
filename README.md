@@ -15,3 +15,9 @@ Crie uma cópia do arquivo `.env.example`, renomeie para `.env` e configure a po
 ### 3. Executar o projeto
 No terminal, execute:
 `npm run start`
+
+---
+
+## Workflow utilizado
+
+O workflow adotado foi o GitHub Flow, por ser um modelo de desenvolvimento simples e eficiente. Ele é especialmente adequado para projetos pequenos e independentes, como esta API, pois facilita a colaboração e a integração contínua.
