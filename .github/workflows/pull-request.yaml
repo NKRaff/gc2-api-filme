@@ -1,0 +1,22 @@
+name: CI - Pull Request
+
+on: [pull-request]
+
+jobs:
+  pr-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonando o repositorio e trocando para a branch correta
+        uses: actions/checkout@v4
+      
+      - name: Instalando o Node.js versão 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Instalando dependencias
+        run: npm install
+
+      - name: Executando projeto
+        run: npm start & sleep 5 && kill $!
