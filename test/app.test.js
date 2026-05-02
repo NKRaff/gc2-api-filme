@@ -41,4 +41,17 @@ describe("API de filmes", () => {
     expect(res.statusCode).toBe(400)
     expect(res.body.error).toBeDefined()
   })
+
+  it("DELETE /api/filmes/:id deve remover filme", async () => {
+    const res = await request(app).delete("/api/filmes/1")
+
+    expect(res.statusCode).toBe(204)
+  })
+
+  it("DELETE /api/filmes/:id não deve remover quando id invalido", async () => {
+    const res = await request(app).delete("/api/filmes/idinvalido")
+    
+    expect(res.statusCode).toBe(404)
+    expect(res.body.error).toBeDefined()
+  })
 })

@@ -26,4 +26,16 @@ app.post("/api/filmes", (req, res) => {
   return res.status(400).json({error: "Campos obrigatórios: titulo, ano e generos"})
 })
 
+app.delete("/api/filmes/:id", (req, res) => {
+  const filmeId = req.params.id
+  const filme = filmes.find(f => f.id === filmeId)
+  
+  if (!filme) {
+    return res.status(404).json({error: "Filme não encontrado"})
+  }
+
+  filmes.splice(filmes.indexOf(filme), 1)
+  return res.sendStatus(204)
+})
+
 export default app
