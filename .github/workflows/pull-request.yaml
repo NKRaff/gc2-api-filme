@@ -16,7 +16,7 @@ jobs:
           cache: 'npm'
 
       - name: Instalando dependencias
-        run: npm install
+        run: npm ci
 
       - name: Executando projeto
         run: npm start & sleep 5 && kill $!
