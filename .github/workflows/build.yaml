@@ -1,9 +1,11 @@
-name: CI - Commit
+name: CI - Build
 
-on: [push]
+on: 
+  push:
+  pull_request:
 
 jobs:
-  commit-build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Clonando o repositorio e trocando para a branch correta
