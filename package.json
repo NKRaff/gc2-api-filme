@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node ./src/server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+    "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "check": "biome check src/ test/",
+    "format": "biome check src/ test/ --write"
   },
   "repository": {
     "type": "git",
