@@ -1,16 +1,17 @@
-name: CI - Build
+name: Coverage
 
-on: 
-  push:
+on:
   pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Clonando o repositorio e trocando para a branch correta
         uses: actions/checkout@v4
-      
+
       - name: Instalando o Node.js versão 20.x
         uses: actions/setup-node@v3
         with:
@@ -20,5 +21,5 @@ jobs:
       - name: Instalando dependencias
         run: npm ci
 
-      - name: Executando projeto
-        run: npm start & sleep 5 && kill $!
+      - name: Rodar testes de cobertura
+        run: npm run test:cov

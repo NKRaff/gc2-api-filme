@@ -1,0 +1,42 @@
+name: CI
+
+on: 
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonando o repositorio e trocando para a branch correta
+        uses: actions/checkout@v4
+      
+      - name: Instalando o Node.js versão 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Instalando dependencias
+        run: npm ci
+
+      - name: Executando projeto
+        run: npm start & sleep 5 && kill $!
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonando o repositorio e trocando para a branch correta
+        uses: actions/checkout@v4
+
+      - name: Instalando o Node.js versão 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Instalando dependencias
+        run: npm ci
+
+      - name: Rodar testes unitarios
+        run: npm run test
