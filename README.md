@@ -1,4 +1,7 @@
 # NKRaff-gc2-api-filme
+
+[![Docker Badge](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white&labelColor=black)](https://hub.docker.com/r/nkraff/gc2-api-filme)
+
 API desenvolvida como uma atividade de Gestão de Configuração II
 
 ## Instruções para executar projeto
