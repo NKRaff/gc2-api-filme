@@ -41,7 +41,7 @@ jobs:
       - name: Rodar testes unitarios
         run: npm run test
 
-  list:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Clonando o repositorio e trocando para a branch correta
@@ -58,3 +58,13 @@ jobs:
 
       - name: Rodar check do lint e do prettier
         run: npm run check
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonando o repositorio e trocando para a branch correta
+        uses: actions/checkout@v4
+
+      - name: Construindo imagem Docker
+        run: docker build -t gc2-api-filme .
+
