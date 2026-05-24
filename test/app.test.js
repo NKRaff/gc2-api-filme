@@ -1,6 +1,6 @@
 import request from "supertest";
+import { filmes } from "../data/filmes.mock.js";
 import app from "../src/app.js";
-import { filmes } from "../src/filmes.mock.js";
 
 beforeEach(() => {
   filmes.length = 0;
