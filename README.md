@@ -83,7 +83,15 @@ Você pode rodar o projeto isolado em um container de duas maneiras:
 
 #### B. Baixando a imagem pronta do Docker Hub
 
-Se preferir não buildar o código, você pode puxar a imagem oficial. Como a imagem do Docker Hub não possui o seu arquivo .env, você deve passar as variáveis manualmente no comando:
+Se preferir não buildar o código, você pode baixar a imagem oficial.
+
+1. Baixe a imagem:
+
+```bash
+    docker pull nkraff/gc2-api-filme 
+```
+
+2. Rode o container passando as variáveis manualmente no comando
 
 ```bash
     docker run -d -p 3000:3000 -e SERVER_PORTA=3000 nkraff/gc2-api-filme
@@ -93,15 +101,17 @@ Se preferir não buildar o código, você pode puxar a imagem oficial. Como a im
 
 Ideal para simular o ambiente de produção completo e isolado em uma máquina virtual baseada no Vagrantfile disponível na raiz.
 
-1. Certifique-se de ter o Vagrant e o Provider (VirtualBox) instalados.
+1. Certifique-se de ter o Vagrant e o Provider (VirtualBox) estão instalados.
 
-2. Na raiz do projeto, inicie a máquina virtual:
+2. Certifique-se de ter o arquivo .env configurado
+
+3. Na raiz do projeto, inicie a máquina virtual:
 
 ```bash
     vagrant up
 ```
 
-3. A máquina será provisionada e a API subirá automaticamente configurada dentro do ambiente virtualizado.
+4. A máquina será provisionada e a API subirá automaticamente configurada dentro do ambiente virtualizado.
 
 ## 🛣️ Endpoints da API
 
