@@ -1,6 +1,6 @@
 import express from "express";
 import { v7 } from "uuid";
-import { filmes } from "./filmes.mock.js";
+import { filmes } from "../data/filmes.mock";
 
 const app = express();
 app.use(express.json());
