@@ -1,4 +1,4 @@
-# NKRaff-gc2-api-filme
+# gc2-api-filme
 
 [![Node Badge](https://img.shields.io/badge/Node.js-5FA04E?style=for-the-badge&label=20.x&logo=nodedotjs&logoColor=white&labelColor=black)](https://nodejs.org/)
 [![Docker Badge](https://img.shields.io/badge/docker_hub-2496ED?style=for-the-badge&logo=docker&logoColor=white&labelColor=black)](https://hub.docker.com/r/nkraff/gc2-api-filme)
@@ -6,7 +6,15 @@
 [![Jest Badge](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white&labelColor=black)](https://jestjs.io/)
 [![Biome Badge](https://img.shields.io/badge/BiomeJS-60A5FA?style=for-the-badge&logo=biome&logoColor=white&labelColor=black)](https://biomejs.dev/)
 
----
+## 📚 Sumário
+
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Workflow Adotado](#-workflow-adotado)
+- [Pré-requisitos](#️-pré-requisitos--configuração-inicial)
+- [Como Executar](#-como-executar-o-projeto)
+- [Endpoints](#️-endpoints-da-api)
+- [Qualidade de Código](#️-qualidade-de-código--scripts-disponíveis)
+- [CI/CD](#️-automação-e-integração-contínua-cicd)
 
 ## 📌 Sobre o Projeto
 
@@ -17,7 +25,7 @@ Ao longo do desenvolvimento, o projeto evoluiu passando pelas seguintes etapas:
 *   **Integração Contínua (CI):** Automação com GitHub Actions.
 *   **Qualidade de Código:** Implementação de testes automatizados, linters e regras de proteção da branch principal (`main`).
 *   **Conteinerização:** Criação e publicação de imagens Docker.
-*   **Infraestrutura como Código (IaC):** Provisionamento de ambiente virtual com Vagrant.
+*   **Infraestrutura como Código (IaC):** Provisionamento de ambiente virtual com Vagrant e Ansible.
 
 ---
 
@@ -111,7 +119,44 @@ Ideal para simular o ambiente de produção completo e isolado em uma máquina v
     vagrant up
 ```
 
-4. A máquina será provisionada e a API subirá automaticamente configurada dentro do ambiente virtualizado.
+> ⚠️ No Windows pode ser necessário subir uma máquina por vez:
+
+```bash
+    vagrant up vm1
+    vagrant up vm2
+```
+
+4. Acesse a VM principal:
+
+```bash
+    vagrant ssh vm1
+```
+
+5. Gere uma chave SSH:
+
+```bash
+    ssh-keygen
+```
+
+6. Copie a chave pública para a segunda VM:
+
+```bash
+    ssh-copy-id vagrant@192.168.33.11
+```
+
+7. Entre na pasta do Ansible:
+
+```bash
+    cd /vagrant/ansible
+```
+
+8. Execute o playbook:
+
+```bash
+    ansible-playbook -i inventory playbook.yml
+```
+
+9. A máquina será provisionada e a API subirá automaticamente configurada dentro do ambiente virtualizado.
 
 ## 🛣️ Endpoints da API
 
