@@ -1,0 +1,22 @@
+- name: Deploy da aplicação 
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Build da imagem Docker
+      community.docker.docker_image:
+        name: "gc2-api-filme"
+        build:
+          path: "/vagrant"
+        source: build
+
+    - name: Subir container
+      community.docker.docker_container:
+        name: "gc2-api-filme"
+        image: "gc2-api-filme"
+        state: started
+        restart_policy: always
+        container_default_behavior: no_defaults
+        ports:
+          - "3000:3000"
+        env_file: "/vagrant/.env"
