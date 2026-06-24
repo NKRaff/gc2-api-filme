@@ -1,0 +1,48 @@
+---
+- name: Instalar e configurar o Netdata
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Baixar o script de instalação do Netdata
+      ansible.builtin.get_url:
+        url: https://get.netdata.cloud/kickstart.sh
+        dest: /tmp/netdata-kickstart.sh
+        mode: '0755'
+    
+    - name: Executar o script de instalação do Netdata
+      ansible.builtin.command: /tmp/netdata-kickstart.sh --dont-wait --stable-channel --disable-telemetry
+      args:
+        creates: /usr/sbin/netdata
+
+    - name: Garantir que o diretório health.d existe
+      ansible.builtin.file:
+        path: /etc/netdata/health.d
+        state: directory
+        owner: netdata
+        group: netdata
+        mode: '0755'
+
+    - name: Configurar alerta customizado de CPU (> 80%)
+      ansible.builtin.copy:
+        dest: /etc/netdata/health.d/cpu_custom.conf
+        content: |
+          alarm: CPU 
+          on: system.cpu
+          lookup: average -1m unaligned of user,system,softirq,irq,guest
+          units: %
+          every: 10s
+          warn: $this > 80
+          crit: $this > 95
+          info: Alerta customizado para CPU acima de 80% (media de 1 minuto)
+        owner: netdata
+        group: netdata
+        mode: '0644'
+      notify: Reiniciar Netdata
+
+  handlers:
+    - name: Reiniciar Netdata
+      ansible.builtin.systemd:
+        name: netdata
+        state: restarted
+        enabled: yes

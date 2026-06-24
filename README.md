@@ -156,6 +156,12 @@ Ideal para simular o ambiente de produção completo e isolado em uma máquina v
     ansible-playbook -i inventory playbook.yml
 ```
 
+> 📊 Caso queira fazer o monitoramento da vm acesse a seguinte url:
+
+```
+    http://192.168.33.11:19999
+```
+
 9. A máquina será provisionada e a API subirá automaticamente configurada dentro do ambiente virtualizado.
 
 ## 🛣️ Endpoints da API
