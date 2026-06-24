@@ -4,10 +4,16 @@
   become: yes
 
   tasks:
-    - name: Baixar e executar o script de instalação do Netdata
-      ansible.builtin.shell: curl -Ss 'https://my-netdata.io/kickstart.sh' | bash -s -- --dont-wait
+    - name: Baixar o script de instalação do Netdata
+      ansible.builtin.get_url:
+        url: https://get.netdata.cloud/kickstart.sh
+        dest: /tmp/netdata-kickstart.sh
+        mode: '0755'
+    
+    - name: Executar o script de instalação do Netdata
+      ansible.builtin.command: /tmp/netdata-kickstart.sh --dont-wait --stable-channel --disable-telemetry
       args:
-        creates: /usr/sbin/netdata # Evita rodar o script novamente se já estiver instalado
+        creates: /usr/sbin/netdata
 
     - name: Garantir que o diretório health.d existe
       ansible.builtin.file:
@@ -21,7 +27,7 @@
       ansible.builtin.copy:
         dest: /etc/netdata/health.d/cpu_custom.conf
         content: |
-          alarm: cpu_usage_custom
+          alarm: CPU 
           on: system.cpu
           lookup: average -1m unaligned of user,system,softirq,irq,guest
           units: %
